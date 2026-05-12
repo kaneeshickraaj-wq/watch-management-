@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan Watch Store Management System</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="watch-bg">
+        <div class="watch1"></div>
+        <div class="watch2"></div>
+        <div class="watch3"></div>
+        <div class="watch4"></div>
+    </div>
+        <header>
+            <h1>⌚ Titan Watch Store</h1>
+            <p>Advanced Management System</p>
+        </header>
+
+        <!-- Login Form -->
+        <div class="login-form">
+            <h2>🔐 Admin Login</h2>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="admin">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="1234">
+            </div>
+            <button class="btn btn-primary" onclick="login()">Login</button>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard hidden">
+            <div style="text-align: right; margin-bottom: 20px; display:flex; gap:12px; justify-content:flex-end; flex-wrap:wrap;">
+                <button class="btn btn-secondary" onclick="toggleTheme()">Theme: Color</button>
+
+                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+            </div>
+
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>➕ Add Watch</h3>
+                    <p>Add new watches to inventory</p>
+                    <button class="btn btn-primary" onclick="openAddModal()">Add Watch</button>
+                </div>
+                <div class="card">
+                    <h3>📋 View Watches</h3>
+                    <p>View all inventory with search</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('viewSection').scrollIntoView()">View Watches</button>
+                </div>
+                <div class="card">
+                    <h3>🧾 Billing</h3>
+                    <p>Generate bill with GST &amp; discount</p>
+                    <button class="btn btn-primary" onclick="openBillModal()">New Bill</button>
+                </div>
+                <div class="card">
+                    <h3>📊 Reports</h3>
+                    <p>Sales &amp; stock analytics</p>
+                    <button class="btn btn-primary" onclick="document.querySelector('.charts-grid').scrollIntoView()">View Charts</button>
+                </div>
+            </div>
+
+            <!-- View Watches Section -->
+            <section id="viewSection">
+                <h2 style="margin-bottom: 20px; color: #ffd700;">📋 Inventory Management</h2>
+                <input type="text" id="searchInput" placeholder="🔍 Search by name..." oninput="searchWatches()" class="btn" style="width: 100%; max-width: 400px; margin-bottom: 20px;">
+                <table id="watchesTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Sold</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <!-- Charts -->
+            <div class="charts-grid">
+                <canvas id="salesChart"></canvas>
+                <canvas id="stockChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Watch Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addModal')">&amp;times;</span>
+            <h2>➕ ${EDIT_MODE ? 'Edit' : 'Add'} Watch</h2>
+            <div class="form-group">
+                <label>ID</label>
+                <input type="number" id="addId">
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="addName">
+            </div>
+            <div class="form-group">
+                <label>Price ($)</label>
+                <input type="number" id="addPrice" step="0.01">
+            </div>
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" id="addQty">
+            </div>
+            <button class="btn btn-primary" onclick="addWatch()">Add Watch</button>
+        </div>
+    </div>
+
+    <!-- Billing Modal -->
+    <div id="billModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('billModal')">&amp;times;</span>
+            <h2>🧾 Generate Bill</h2>
+            <div class="form-group">
+                <label>Watch ID</label>
+                <input type="number" id="billId" placeholder="Enter watch ID">
+            </div>
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" id="billQty">
+            </div>
+            <button class="btn btn-primary" onclick="calculateBill()">Calculate Bill</button>
+            <div id="billDetails"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+/* Titan Watch Store - Modern Theme */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: linear-gradient(135deg, #0a2540 0%, #13588c 25%, #1e3a8a 50%, #1e40af 75%, #1d4ed8 100%);
+    --text: #e0f2fe;
+    --header-bg: rgba(255, 255, 255, 0.12);
+    --header-border: rgba(255, 255, 255, 0.2);
+    --header-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2);
+
+    --accent-gold: #ffd700;
+
+    --panel-bg: rgba(255, 255, 255, 0.15);
+    --panel-border: rgba(255, 255, 255, 0.25);
+
+    --card-bg: rgba(255, 255, 255, 0.08);
+    --card-border: rgba(255, 255, 255, 0.18);
+
+    --input-bg: rgba(255, 255, 255, 0.9);
+
+    --table-bg: rgba(255, 255, 255, 0.06);
+    --table-border: rgb(255, 255, 255);
+    --row-hover: rgba(255, 215, 0, 0.1);
+
+    --th-bg: linear-gradient(45deg, #2c3e50, #34495e);
+
+    --modal-bg: rgba(0, 0, 0, 0.8);
+    --modal-content-bg: rgba(255, 255, 255, 0.12);
+    --modal-content-border: rgba(255, 255, 255, 0.25);
+
+    --btn-primary-bg: linear-gradient(45deg, #ffd700, #ffed4e);
+    --btn-primary-fg: #0f0f23;
+    --btn-primary-hover-shadow: rgba(255, 215, 0, 0.4);
+
+    --btn-secondary-bg: linear-gradient(45deg, #2c3e50, #34495e);
+    --btn-secondary-fg: white;
+    --btn-secondary-hover-bg: linear-gradient(45deg, #34495e, #2c3e50);
+
+    --btn-danger-bg: linear-gradient(45deg, #e74c3c, #c0392b);
+    --btn-danger-fg: white;
+    --btn-danger-hover-shadow: rgba(231, 76, 60, 0.4);
+
+    --chart-title: #ffd700;
+    --chart-accent-1: #ffd700;
+    --chart-accent-2: #ffed4e;
+    --chart-accent-3: #2c3e50;
+    --chart-accent-4: #e74c3c;
+    --chart-accent-5: #00ff00;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body.theme-bw {
+    --bg: linear-gradient(135deg, #0b0b0b 0%, #111 25%, #1a1a1a 50%, #0f0f0f 75%, #000 100%);
+    --text: #f2f2f2;
+    --accent-gold: #ffffff;
+
+    --header-bg: rgba(255, 255, 255, 0.08);
+    --header-border: rgba(255, 255, 255, 0.12);
+    --header-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+    --panel-bg: rgba(255, 255, 255, 0.08);
+    --panel-border: rgba(255, 255, 255, 0.15);
+
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.14);
+
+    --input-bg: rgba(255, 255, 255, 0.92);
+
+    --table-bg: rgba(255, 255, 255, 0.05);
+    --table-border: rgba(255, 255, 255, 0.12);
+    --row-hover: rgba(255, 255, 255, 0.08);
+
+    --th-bg: linear-gradient(45deg, #111, #222);
+
+    --modal-bg: rgba(0, 0, 0, 0.9);
+    --modal-content-bg: rgba(255, 255, 255, 0.08);
+    --modal-content-border: rgba(255, 255, 255, 0.18);
+
+    --btn-primary-bg: linear-gradient(45deg, #ffffff, #e6e6e6);
+    --btn-primary-fg: #000000;
+    --btn-primary-hover-shadow: rgba(255, 255, 255, 0.25);
+
+    --btn-secondary-bg: linear-gradient(45deg, #111, #333);
+    --btn-secondary-fg: #ffffff;
+    --btn-secondary-hover-bg: linear-gradient(45deg, #333, #111);
+
+    --btn-danger-bg: linear-gradient(45deg, #ff4d4d, #b30000);
+    --btn-danger-fg: #ffffff;
+    --btn-danger-hover-shadow: rgba(255, 77, 77, 0.35);
+
+    --chart-title: #ffffff;
+    --chart-accent-1: #ffffff;
+    --chart-accent-2: #e6e6e6;
+    --chart-accent-3: #333333;
+    --chart-accent-4: #ff4d4d;
+    --chart-accent-5: #ffffff;
+}
+
+
+/* Watch background particles */
+.watch-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.05;
+}
+
+.watch1 { background: url('https://cdn-icons-png.flaticon.com/512/3106/3106775.png') no-repeat center/contain; position: absolute; width: 80px; height: 80px; top: 10%; left: 10%; animation: float 20s infinite linear; }
+.watch2 { background: url('https://cdn-icons-png.flaticon.com/512/2941/2941649.png') no-repeat center/contain; position: absolute; width: 60px; height: 60px; top: 60%; right: 15%; animation: float 25s infinite linear reverse; }
+.watch3 { background: url('https://cdn-icons-png.flaticon.com/512/3106/3106787.png') no-repeat center/contain; position: absolute; width: 70px; height: 70px; bottom: 20%; left: 20%; animation: float 30s infinite linear; }
+.watch4 { background: url('https://cdn-icons-png.flaticon.com/512/10419/10419201.png') no-repeat center/contain; position: absolute; width: 50px; height: 50px; top: 30%; right: 25%; animation: float 22s infinite linear reverse; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    font-size: 3em;
+    background: linear-gradient(45deg, #60a5fa, #93c5fd, #bfdbfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(96, 165, 250, 0.6);
+    margin-bottom: 10px;
+}
+
+.login-form, .dashboard {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-form::before, .dashboard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.dashboard {
+    max-width: none;
+}
+
+.login-form.hidden, .dashboard.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #ffd700;
+}
+
+input[type="text"], input[type="number"], input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    transform: scale(1.02);
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #0f0f23;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #2c3e50, #34495e);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(45deg, #34495e, #2c3e50);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.btn-danger:hover {
+    box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    color: #ffd700;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+#searchInput {
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+    background: linear-gradient(45deg, #2c3e50, #34495e);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+tr:hover {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close {
+    color: #ffd700;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #fff;
+}
+
+.bill-details {
+    background: rgba(0, 255, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border-left: 4px solid #00ff00;
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+#salesChart, #stockChart {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid, .charts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+}
